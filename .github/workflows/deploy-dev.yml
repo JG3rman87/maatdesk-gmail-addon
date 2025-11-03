@@ -42,8 +42,8 @@ jobs:
       # 5. Sube tu código al proyecto de Apps Script (Buena práctica)
       # (clasp lee el .clasp.json de la rama "develop" para saber a qué script ID apuntar)
       - name: Push code
-        run: clasp push
+        run: npx clasp push
 
       # 6. Despliega una nueva versión
       - name: Deploy new version
-        run: clasp deploy --description "Deploy automático desde GitHub Actions"
+        run: npx clasp deploy --description "Deploy automático desde GitHub Actions"
