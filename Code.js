@@ -25,10 +25,10 @@ const PROPS = {
 };
 
 const OIDC = {
-  AUTH_BASE: "https://mdauth-dev.maatdesk.com",
-  AUTHORIZE_URL: "https://mdauth-dev.maatdesk.com/connect/authorize",
-  TOKEN_URL: "https://mdauth-dev.maatdesk.com/connect/token",
-  END_SESSION_URL: "https://mdauth-dev.maatdesk.com/Account/LogoutAddon",
+  AUTH_BASE: PropertiesService.getScriptProperties().getProperty("AUTH_BASE"),
+  AUTHORIZE_URL: PropertiesService.getScriptProperties().getProperty("AUTHORIZE_URL"),
+  TOKEN_URL: PropertiesService.getScriptProperties().getProperty("TOKEN_URL"),
+  END_SESSION_URL: PropertiesService.getScriptProperties().getProperty("END_SESSION_URL"),
   CLIENT_ID: "public_web_client",
   SCOPES: "openid profile email offline_access lpm_api lpm_api.all",
   REDIRECT_URI:
