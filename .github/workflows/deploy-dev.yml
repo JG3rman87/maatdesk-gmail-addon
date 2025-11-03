@@ -1,4 +1,4 @@
-name: Deploy to DEV Environment
+name: Deploy Project to Google Apps Script
 
 on:
   push:
@@ -46,8 +46,12 @@ jobs:
       
       # 5. Sube tu código
       - name: Push code
-        run: npx clasp push
+        run: npx clasp push --force
 
-      # 6. Despliega una nueva versión
+      # 7. Obtiene el asunto (primera línea) del último commit
+      - name: Get commit subject
+        run: echo "COMMIT_MSG=$(git log -1 --pretty=%s)" >> $GITHUB_ENV
+
+      # 8. Despliega la nueva versión usando el mensaje del commit
       - name: Deploy new version
-        run: npx clasp deploy --description "Deploy automático desde GitHub Actions"
+        run: npx clasp deploy --description "${{ env.COMMIT_MSG }}"
