@@ -31,8 +31,8 @@ jobs:
       - name: Create .clasprc.json (Login)
         run: echo "${{ vars.CLASPRC_JSON_VAR }}" | base64 --decode > ./.clasprc.json
         
-      # - name: Login .clasprc.json (Login)
-      #   run: clasp login --creds $HOME/.clasprc.json
+      - name: Login .clasprc.json (Login)
+        run: clasp login --creds ./.clasprc.json
 
       # 5. Sube tu código al proyecto de Apps Script (Buena práctica)
       # (clasp lee el .clasp.json de la rama "develop" para saber a qué script ID apuntar)
