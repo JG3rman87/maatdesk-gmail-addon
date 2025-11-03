@@ -31,8 +31,7 @@ const OIDC = {
   END_SESSION_URL: PropertiesService.getScriptProperties().getProperty("END_SESSION_URL"),
   CLIENT_ID: "public_web_client",
   SCOPES: "openid profile email offline_access lpm_api lpm_api.all",
-  REDIRECT_URI:
-    "https://script.google.com/macros/s/AKfycbxfJtZJj7Cc004ytOAz7f69GJWuQgwYObAANlYAm2MMR07rZ2H20xJAsh4QglYEOf_f/exec",
+  REDIRECT_URI: PropertiesService.getScriptProperties().getProperty("REDIRECT_URI"),
 };
 
 const MD = {
