@@ -45,7 +45,7 @@
     "https://api.maatdesk.com/api/matters"
   ],
   "gmail": {
-    "name": "Maatdesk_DEV",
+    "name": "Maatdesk_PROD",
     "logoUrl": "https://auth.maatdesk.com/images/logoAddon.png",
     "contextualTriggers": [
       {
