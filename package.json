@@ -1,5 +1,9 @@
 {
   "dependencies": {
     "@google/clasp": "^3.1.1"
+  },
+  "scripts": {
+    "deploy_dev": "./prepare.sh dev && npx clasp push -f",
+    "deploy_prod": "./prepare.sh prod && npx clasp push -f"
   }
 }
