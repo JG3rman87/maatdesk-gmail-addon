@@ -1,0 +1,53 @@
+name: Deploy to DEV Environment
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Clona tu repositorio
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2. Configura Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      # 3. Instala clasp (desde package.json)
+      - name: Install clasp
+        run: npm install
+
+      # 3b. Da permisos de ejecución al script
+      - name: Make prepare script executable
+        run: chmod +x ./prepare.sh
+
+      - name: Prepare PROD environment
+        if: ${{ endsWith(github.ref, 'main') }}
+        run: ./prepare.sh prod
+        
+      - name: Prepare DEV environment
+        if: ${{ endsWith(github.ref, 'develop') }}
+        run: ./prepare.sh dev
+
+      # 4. Desencripta el .clasprc.json
+      - name: Decrypt .clasprc.json (Login)
+        run: |
+          gpg \
+            --quiet --batch --yes --decrypt --passphrase="${{ secrets.CLASPRC_JSON }}" \
+            --output $HOME/.clasprc.json .clasprc.json.gpg
+      
+      # 5. Sube tu código
+      - name: Push code
+        run: npx clasp push
+
+      # 6. Despliega una nueva versión
+      - name: Deploy new version
+        run: npx clasp deploy --description "Deploy automático desde GitHub Actions"

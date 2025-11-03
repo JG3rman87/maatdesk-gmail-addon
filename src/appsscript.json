@@ -1,0 +1,60 @@
+{
+  "timeZone": "America/New_York",
+  "exceptionLogging": "STACKDRIVER",
+  "runtimeVersion": "V8",
+  "webapp": {
+    "executeAs": "USER_ACCESSING",
+    "access": "ANYONE"
+  },
+  "oauthScopes": [
+    "https://www.googleapis.com/auth/gmail.addons.execute",
+    "https://www.googleapis.com/auth/gmail.addons.current.message.readonly",
+    "https://www.googleapis.com/auth/userinfo.email",
+    "https://www.googleapis.com/auth/script.external_request",
+    "https://www.googleapis.com/auth/gmail.modify",
+    "https://www.googleapis.com/auth/gmail.readonly"
+  ],
+  "urlFetchWhitelist": [
+    "https://www.googleapis.com/gmail/v1/*",
+    "https://gmail.googleapis.com/*",
+    "https://gmail.googleapis.com/gmail/v1/*",
+    "https://gmail.googleapis.com/gmail/v1/users/me/messages",
+    "https://gmail.googleapis.com/gmail/v1/users/me/threads/*",
+    "https://gmail.googleapis.com/gmail/v1/users/me/threads",
+    "https://www.googleapis.com/gmail/v1/users/me/messages",
+    "https://mdauth-dev.maatdesk.com/*",
+    "https://mdapi-dev.maatdesk.com/*",
+    "https://mdapi-dev.maatdesk.com/",
+    "https://mdauth-dev.maatdesk.com/",
+    "https://mdauth-dev.maatdesk.com/connect/token",
+    "https://mdauth-dev.maatdesk.com/connect/authorize",
+    "https://mdauth.maatdesk.com/connect/token",
+    "https://mdapi-dev.maatdesk.com/api/v2/Matters",
+    "https://mdapi-dev.maatdesk.com/api/matters/*",
+    "https://mdapp-dev.maatdesk.com/auth/logout",
+    "https://mdapi-dev.maatdesk.com/api/matters",
+    "https://auth.maatdesk.com/*",
+    "https://api.maatdesk.com/*",
+    "https://api.maatdesk.com/",
+    "https://auth.maatdesk.com/",
+    "https://auth.maatdesk.com/connect/token",
+    "https://auth.maatdesk.com/connect/authorize",
+    "https://api.maatdesk.com/api/v2/Matters",
+    "https://api.maatdesk.com/api/matters/*",
+    "https://app.maatdesk.com/auth/logout",
+    "https://api.maatdesk.com/api/matters"
+  ],
+  "gmail": {
+    "name": "Maatdesk_DEV",
+    "logoUrl": "https://auth.maatdesk.com/images/logoAddon.png",
+    "contextualTriggers": [
+      {
+        "unconditional": {},
+        "onTriggerFunction": "onGmailMessageOpen"
+      }
+    ],
+    "primaryColor": "#3ed79f",
+    "secondaryColor": "#FFFFFF",
+    "version": "TRUSTED_TESTER_V2"
+  }
+}
