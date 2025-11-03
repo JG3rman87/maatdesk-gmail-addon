@@ -36,8 +36,8 @@ const OIDC = {
 };
 
 const MD = {
-  API: "https://mdapi-dev.maatdesk.com",
-  APP: "https://mdapp-dev.maatdesk.com",
+  API: PropertiesService.getScriptProperties().getProperty("API_URL"),
+  APP: PropertiesService.getScriptProperties().getProperty("APP_URL"),
 };
 
 const MAATDESK_LABEL_NAME = "Maatdesk Linked";

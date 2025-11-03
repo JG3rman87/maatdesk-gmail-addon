@@ -1,0 +1,40 @@
+name: Deploy to DEV Environment
+
+# Se ejecuta automáticamente cada vez que haces push a la rama "develop"
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Clona tu repositorio
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2. Configura Node.js (necesario para npm)
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      # 3. Instala clasp
+      - name: Install clasp
+        run: npm install -g @google/clasp
+
+      # 4. ¡AQUÍ ESTÁ LA MAGIA!
+      # Crea el archivo .clasprc.json en el runner usando el Secret
+      - name: Create .clasprc.json (Login)
+        run: echo "${{ secrets.CLASPRC_JSON }}" > ~/.clasprc.json
+
+      # 5. Sube tu código al proyecto de Apps Script (Buena práctica)
+      # (clasp lee el .clasp.json de la rama "develop" para saber a qué script ID apuntar)
+      - name: Push code
+        run: clasp push
+
+      # 6. Despliega una nueva versión
+      - name: Deploy new version
+        run: clasp deploy --description "Deploy automático desde GitHub Actions"
