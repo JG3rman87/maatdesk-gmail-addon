@@ -29,6 +29,9 @@ jobs:
       # Crea el archivo .clasprc.json en el runner usando el Secret
       - name: Create .clasprc.json (Login)
         run: echo "${{ secrets.CLASPRC_JSON }}" > $HOME/.clasprc.json
+        
+      - name: Login .clasprc.json (Login)
+        run: clasp login --creds $HOME/.clasprc.json
 
       # 5. Sube tu código al proyecto de Apps Script (Buena práctica)
       # (clasp lee el .clasp.json de la rama "develop" para saber a qué script ID apuntar)
