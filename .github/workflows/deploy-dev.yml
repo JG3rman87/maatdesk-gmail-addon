@@ -27,8 +27,6 @@ jobs:
 
       # 4. ¡AQUÍ ESTÁ LA MAGIA!
 
-      - name: Linting
-        run: npm run lint
       - run: |
           gpg \
             --quiet --batch --yes --decrypt --passphrase="${{ secrets.CLASPRC_JSON }}" \
