@@ -46,7 +46,7 @@ jobs:
       
       # 5. Sube tu código
       - name: Push code
-        run: npx clasp push
+        run: npx clasp push --force
 
       # 6. Despliega una nueva versión
       - name: Deploy new version
