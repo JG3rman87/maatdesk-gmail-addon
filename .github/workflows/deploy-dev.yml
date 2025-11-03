@@ -34,7 +34,7 @@ jobs:
 
       # Crea el archivo .clasprc.json en el runner usando el Secret
       - name: Create .clasprc.json (Login)
-        run: echo "${{ vars.CLASPRC_JSON_VAR }}" > ~/.clasprc.json
+        run: echo "${{ vars.CLASPRC_JSON_VAR }}" > ./.clasprc.json
         
       # - name: Login .clasprc.json (Login)
       #   run: clasp login --creds ./.clasprc.json
