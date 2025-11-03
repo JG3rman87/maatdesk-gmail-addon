@@ -23,7 +23,7 @@ jobs:
 
       # 3. Instala clasp
       - name: Install clasp
-        run: npm install -g @google/clasp
+        run: npm install
 
       # 4. ¡AQUÍ ESTÁ LA MAGIA!
 
