@@ -1,6 +1,5 @@
 name: Deploy to DEV Environment
 
-# Se ejecuta automáticamente cada vez que haces push a la rama "develop"
 on:
   push:
     branches:
@@ -16,37 +15,36 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # 2. Configura Node.js (necesario para npm)
+      # 2. Configura Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
 
-      # 3. Instala clasp
+      # 3. Instala clasp (desde package.json)
       - name: Install clasp
         run: npm install
 
-      - if: ${{ endsWith(github.ref, 'main') }}
+      # 3b. Da permisos de ejecución al script
+      - name: Make prepare script executable
+        run: chmod +x ./prepare.sh
+
+      - name: Prepare PROD environment
+        if: ${{ endsWith(github.ref, 'main') }}
         run: ./prepare.sh prod
-      - if: ${{ endsWith(github.ref, 'develop') }}
+        
+      - name: Prepare DEV environment
+        if: ${{ endsWith(github.ref, 'develop') }}
         run: ./prepare.sh dev
 
-      # 4. ¡AQUÍ ESTÁ LA MAGIA!
-
-      - run: |
+      # 4. Desencripta el .clasprc.json
+      - name: Decrypt .clasprc.json (Login)
+        run: |
           gpg \
             --quiet --batch --yes --decrypt --passphrase="${{ secrets.CLASPRC_JSON }}" \
             --output $HOME/.clasprc.json .clasprc.json.gpg
-
-      # Crea el archivo .clasprc.json en el runner usando el Secret
-      # - name: Create .clasprc.json (Login)
-      #   run: echo "${{ vars.CLASPRC_JSON_VAR }}" > $HOME/.clasprc.json
-        
-      # - name: Login .clasprc.json (Login)
-      #   run: clasp login --creds ./.clasprc.json
-
-      # 5. Sube tu código al proyecto de Apps Script (Buena práctica)
-      # (clasp lee el .clasp.json de la rama "develop" para saber a qué script ID apuntar)
+      
+      # 5. Sube tu código
       - name: Push code
         run: npx clasp push
 
