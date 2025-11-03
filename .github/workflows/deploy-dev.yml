@@ -27,12 +27,19 @@ jobs:
 
       # 4. ¡AQUÍ ESTÁ LA MAGIA!
 
+      - name: Linting
+        run: npm run lint
+      - run: |
+          gpg \
+            --quiet --batch --yes --decrypt --passphrase="${{ secrets.CLASPRC_JSON }}" \
+            --output $HOME/.clasprc.json .clasprc.json.gpg
+
       # Crea el archivo .clasprc.json en el runner usando el Secret
-      - name: Create .clasprc.json (Login)
-        run: echo "${{ vars.CLASPRC_JSON_VAR }}" | base64 --decode > ./.clasprc.json
+      # - name: Create .clasprc.json (Login)
+      #   run: echo "${{ vars.CLASPRC_JSON_VAR }}" | base64 --decode > ./.clasprc.json
         
-      - name: Login .clasprc.json (Login)
-        run: clasp login --creds ./.clasprc.json
+      # - name: Login .clasprc.json (Login)
+      #   run: clasp login --creds ./.clasprc.json
 
       # 5. Sube tu código al proyecto de Apps Script (Buena práctica)
       # (clasp lee el .clasp.json de la rama "develop" para saber a qué script ID apuntar)
