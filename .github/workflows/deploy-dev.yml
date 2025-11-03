@@ -27,14 +27,14 @@ jobs:
 
       # 4. ¡AQUÍ ESTÁ LA MAGIA!
 
-      - run: |
-          gpg \
-            --quiet --batch --yes --decrypt --passphrase="${{ secrets.CLASPRC_JSON }}" \
-            --output $HOME/.clasprc.json .clasprc.json.gpg
+      # - run: |
+      #     gpg \
+      #       --quiet --batch --yes --decrypt --passphrase="${{ secrets.CLASPRC_JSON }}" \
+      #       --output $HOME/.clasprc.json .clasprc.json.gpg
 
       # Crea el archivo .clasprc.json en el runner usando el Secret
-      # - name: Create .clasprc.json (Login)
-      #   run: echo "${{ vars.CLASPRC_JSON_VAR }}" | base64 --decode > ./.clasprc.json
+      - name: Create .clasprc.json (Login)
+        run: echo "${{ vars.CLASPRC_JSON_VAR }}" > ./.clasprc.json
         
       # - name: Login .clasprc.json (Login)
       #   run: clasp login --creds ./.clasprc.json
