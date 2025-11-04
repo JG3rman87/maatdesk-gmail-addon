@@ -1,7 +1,7 @@
 # Maatdesk Gmail Addon
 
 ## Descripción
-Add-on de Gmail desarrollado con Google Apps Script para [descripción breve de la funcionalidad del addon].
+Add-on de Gmail desarrollado con Google Apps Script para vincular correos de Gmail a matters en Maatdesk.
 
 ## Estructura del Proyecto
 ```
