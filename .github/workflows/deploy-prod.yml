@@ -1,9 +1,13 @@
-name: Deploy DEV Project to Google Apps Script
+name: Deploy PROD Project to Google Apps Script
 
 on:
-  push:
-    branches:
-      - develop
+  workflow_dispatch:
+    # Añade una entrada opcional para que puedas elegir a qué rama desplegar
+    inputs:
+      branch:
+        description: 'The branch to deploy (main or develop)'
+        required: true
+        default: 'develop'
 
 jobs:
   deploy:
@@ -26,10 +30,10 @@ jobs:
 
       # 3b. Da permisos de ejecución al script
       - name: Make prepare script executable
-        run: chmod +x ./prepare.sh      
-        
-      - name: Prepare DEV environment
-        run: ./prepare.sh dev
+        run: chmod +x ./prepare.sh
+
+      - name: Prepare PROD environment        
+        run: ./prepare.sh prod
 
       # 4. Desencripta el .clasprc.json
       - name: Decrypt .clasprc.json (Login)

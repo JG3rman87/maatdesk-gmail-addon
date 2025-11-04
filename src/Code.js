@@ -1001,6 +1001,7 @@ function buildCombinedViewCard_(uiState, threadDetails, suggestions, linkedMessa
                         .setParameters({ messageIdHeader: buttonMessageIdParam })
                     )
                     .setTextButtonStyle(CardService.TextButtonStyle.FILLED)
+                    .setBackgroundColor('#3ED79F')
                     .setDisabled(isButtonDisabled)
                 )
             );
@@ -1047,7 +1048,6 @@ function findMessageByHeaderId_(messageIdHeader) {
         if (searchResults && searchResults.length > 0) {
             const thread = searchResults[0]; // [cite: 389]
             const messagesInThread = thread.getMessages(); // [cite: 390]
-            // Buscamos el mensaje específico dentro del hilo [cite: 390]
             const msg = messagesInThread.find(m => m.getHeader("Message-ID").replace(/^</, '').replace(/>$/, '').trim() === messageIdHeader);
             return msg || null;
         }
