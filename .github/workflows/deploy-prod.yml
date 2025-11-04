@@ -2,13 +2,7 @@ name: Deploy PROD Project to Google Apps Script
 
 on:
   workflow_dispatch:
-    # Añade una entrada opcional para que puedas elegir a qué rama desplegar
-    inputs:
-      branch:
-        description: 'The branch to deploy (main or develop)'
-        required: true
-        default: 'develop'
-
+    
 jobs:
   deploy:
     runs-on: ubuntu-latest
