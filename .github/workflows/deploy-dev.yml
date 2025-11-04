@@ -1,4 +1,4 @@
-name: Deploy DEV Project to Google Apps Script
+name: Deploy DEV Project to Apps Script
 
 on:
   push:
