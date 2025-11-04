@@ -1,4 +1,4 @@
-name: Deploy Project to Google Apps Script
+name: Deploy PROD Project to Google Apps Script
 
 on:
   workflow_dispatch:
